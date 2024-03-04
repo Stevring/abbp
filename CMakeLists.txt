@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.10)
 project(ABBP
         VERSION 0.1)
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 14)
 add_library(common STATIC
             ${CMAKE_SOURCE_DIR}/common/byte_stream_reader.cpp)
 
