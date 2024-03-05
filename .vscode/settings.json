@@ -49,7 +49,14 @@
         "sstream": "cpp",
         "stdexcept": "cpp",
         "streambuf": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "iostream": "cpp",
+        "unordered_map": "cpp",
+        "__hash_table": "cpp",
+        "__node_handle": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "optional": "cpp"
     },
     "editor.formatOnSave": true,
     "editor.formatOnSaveMode": "file",

@@ -8,9 +8,9 @@ namespace parser {
 namespace hevc {
 class NalRBSP {};
 class NalUnit {
- public:
-  NALUnitHeader nal_unit_header;
+public:
+  NalUnitHeader nal_unit_header;
   bool parse(common::BitReader &reader);
 };
-}  // namespace hevc
-}  // namespace parser
+} // namespace hevc
+} // namespace parser
