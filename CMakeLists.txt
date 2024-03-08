@@ -8,10 +8,11 @@ set(common_sources ${common_dir}/byte_stream_reader.cpp ${common_dir}/vector_sub
 add_library(common STATIC ${common_sources})
 
 set(hevc_dir ${CMAKE_SOURCE_DIR}/hevc)
-set(hevc_sources ${hevc_dir}/hevc_parser.cpp ${hevc_dir}/hevc_nal_unit_header.cpp ${hevc_dir}/hevc_nal_unit.cpp)
+set(hevc_sources ${hevc_dir}/hevc_parser.cpp ${hevc_dir}/hevc_nal_unit_header.cpp ${hevc_dir}/hevc_nal_unit.cpp ${hevc_dir}/js_wrapper/hevc_wrapper.cpp)
 add_library(hevc_parser STATIC ${hevc_sources})
 target_include_directories(hevc_parser PUBLIC
                            ${CMAKE_SOURCE_DIR}/common)
+target_include_directories(hevc_parser PUBLIC /usr/local/Cellar/emscripten/3.1.55/libexec/cache/sysroot/include)
 target_link_libraries(hevc_parser common)
 
 
@@ -20,7 +21,6 @@ add_link_options(-sNODERAWFS=1 -sALLOW_MEMORY_GROWTH=1)
 add_executable(parser ${CMAKE_SOURCE_DIR}/app/main.cpp)
 target_include_directories(parser PRIVATE
                            ${CMAKE_SOURCE_DIR}/hevc)
-target_include_directories(parser PRIVATE /Users/feiyu.xia/Projects/emsdk/upstream/emscripten/cache/sysroot/include)
 target_link_libraries(parser hevc_parser)
 
 install(TARGETS hevc_parser DESTINATION ${CMAKE_BINARY_DIR}/lib)
