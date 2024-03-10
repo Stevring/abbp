@@ -6,7 +6,8 @@
 
 #include "reader.h"
 
-namespace parser::hevc {
+namespace parser {
+namespace hevc {
 struct NalType {
   enum V : uint8_t {
     TRAIL_N,
@@ -84,7 +85,7 @@ struct NalType {
 private:
   V _v;
   static std::unordered_map<NalType::V, std::string> _m;
-};
+}; // namespace hevcstruct NalType
 
 struct NalUnitHeader {
   bool parse(common::BitReader &reader);
@@ -93,4 +94,5 @@ struct NalUnitHeader {
   uint8_t nuh_temporal_id_plus1;
   friend std::ostream &operator<<(std::ostream &os, const NalUnitHeader &h);
 };
-} // namespace parser::hevc
+} // namespace hevc
+} // namespace parser

@@ -22,7 +22,8 @@ int main(int argc, const char *argv[]) {
   FILE *f = fopen(argv[1], "r");
   fread(byte_stream.get(), s.st_size, 1, f);
   fclose(f);
-  auto parser = parser::hevc::Parser(byte_stream, s.st_size);
+  auto parser = parser::hevc::Parser(
+      reinterpret_cast<intptr_t>(byte_stream.get()), s.st_size);
   parser.parse();
   printf("NAL count %ld\n", parser.getNALCount());
 }

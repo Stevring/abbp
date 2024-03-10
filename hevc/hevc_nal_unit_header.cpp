@@ -14,7 +14,8 @@
 
 // } // namespace std
 
-namespace parser::hevc {
+namespace parser {
+namespace hevc {
 std::unordered_map<NalType::V, std::string> NalType::_m = {
     {NalType::TRAIL_N, "TRAIL_N"},
     {NalType::TRAIL_R, "TRAIL_R"},
@@ -116,4 +117,5 @@ std::ostream &operator<<(std::ostream &os,
      << std::endl;
   return os;
 }
-} // namespace parser::hevc
+} // namespace hevc
+} // namespace parser

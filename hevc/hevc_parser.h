@@ -10,7 +10,7 @@ namespace hevc {
 class Parser {
 public:
   // Parser(const char *file_path);
-  Parser(std::shared_ptr<uint8_t> byte_stream, const size_t size);
+  Parser(intptr_t byte_stream, const size_t size);
   ~Parser();
 
   bool parse();
