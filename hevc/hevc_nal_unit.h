@@ -10,6 +10,7 @@ class NalRBSP {};
 class NalUnit {
 public:
   NalUnitHeader nal_unit_header;
+  std::shared_ptr<NalRBSP> rbsp;
   bool parse(common::BitReader &reader);
 };
 } // namespace hevc

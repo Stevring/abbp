@@ -81,6 +81,7 @@ struct NalType {
   NalType(uint8_t u) : _v(static_cast<V>(u)){};
   std::string stringify() const { return _m[_v]; }
   bool operator==(const NalType &t) const { return _v == t._v; }
+  V v() { return _v; }
 
 private:
   V _v;

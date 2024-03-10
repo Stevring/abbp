@@ -2,17 +2,29 @@ cmake_minimum_required(VERSION 3.10)
 project(ABBP
         VERSION 0.1)
 set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_BUILD_TYPE Debug)
 
 # emscripten common compile and link option, we add them for both compiler and linker.
+if(ENV EQUAL "wasm")
 add_compile_options(-sNODERAWFS=1 -sALLOW_MEMORY_GROWTH=1) #  -sNODERAWFS=1 use raw node file system, thus we can access local files within js code; -sALLOW_MEMORY_GROWTH our binary input file maybe too large to fit into initial memory.
 add_link_options(-sNODERAWFS=1 -sALLOW_MEMORY_GROWTH=1)
+endif()
 
 set(common_dir ${CMAKE_SOURCE_DIR}/common)
 set(common_sources ${common_dir}/byte_stream_reader.cpp ${common_dir}/vector_subbyte_reader.cpp)
 add_library(common STATIC ${common_sources})
 
 set(hevc_dir ${CMAKE_SOURCE_DIR}/hevc)
-set(hevc_sources ${hevc_dir}/hevc_parser.cpp ${hevc_dir}/hevc_nal_unit_header.cpp ${hevc_dir}/hevc_nal_unit.cpp ${hevc_dir}/js_wrapper/hevc_wrapper.cpp)
+set(hevc_rbsp_dir ${hevc_dir}/rbsp)
+set(hevc_sources 
+        ${hevc_dir}/hevc_parser.cpp 
+        ${hevc_dir}/hevc_nal_unit_header.cpp 
+        ${hevc_dir}/hevc_nal_unit.cpp 
+        ${hevc_rbsp_dir}/video_parameter_set_rbsp.cpp)
+if()
+set(hevc_wrapper_dir ${hevc_dir}/js_wrapper)
+list(APPEND hevc_sources ${hevc_wrapper_dir}/hevc_wrapper.cpp)
+endif()
 add_library(hevc_parser STATIC ${hevc_sources})
 target_include_directories(hevc_parser PUBLIC
                            ${CMAKE_SOURCE_DIR}/common)
